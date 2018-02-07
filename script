@@ -1,0 +1,29 @@
+#!bin/bash
+
+echo "look at disk"
+sudo fdisk -l /dev/sda
+
+echo "creat 32 MB file"
+ff if=/dev/zero of=./32MB.img bs=1M count=32
+
+echo "look inside the file'
+hexdump ./32MB | less
+
+echo "using mkfs command'
+mkfs -t ext4 .32MB.img
+
+echo "making directory in /mnt/temp"
+
+mkdie /mnt/tmp
+sudo mount ./32MB.img .mnt.tmp
+mount; df -h
+lsblk
+
+echo "cd to /tmp/tmp"
+
+cd /tmp/tmp; ls
+echo :hello world: >./hello.txt
+
+sudo unmount /mnt/tmp
+
+hecdump --canonical ./32MD.im |less
